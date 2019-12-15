@@ -12,6 +12,7 @@ export class FilterComponent implements OnInit {
   public dropdownSettings = {};
   public allUsers = [];
   public filtredUsers = [];
+  public filtrationtype = "or";
 
   constructor(public filtration: Filtration) {}
 
@@ -25,18 +26,25 @@ export class FilterComponent implements OnInit {
       singleSelection: false,
       idField: "id",
       textField: "text",
-      selectAllText: "Select All",
-      unSelectAllText: "UnSelect All",
       itemsShowLimit: 10,
-      allowSearchFilter: false
+      allowSearchFilter: false,
+      enableCheckAll: false,
     } as IDropdownSettings;
   }
 
-  public onFilterSelect(event: any, property: string) {
-    this.filtredUsers = this.filtration.doFiltrationOr(this.allUsers);
+  public onFilterChange(event: any) {
+    this.filtredUsers = this.filtration.doFiltration(this.allUsers, this.filtrationtype);
   }
-  public onFilterSelectAll(event: any, property: string) {
-    this.filtredUsers = this.filtration.doFiltrationOr(this.allUsers);
+
+  public onChangeFiltrationType(){
+    if(this.filtrationtype === "or" ) {
+      this.filtrationtype = "and";
+    }
+    else if(this.filtrationtype === "and" ) {
+      this.filtrationtype = "or";
+    }
+
+    this.onFilterChange(null);
   }
 
   private generateUsers(): User[] {

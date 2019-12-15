@@ -5,22 +5,33 @@
 
 <ng-multiselect-dropdown [placeholder]="'gender'" [data]="filtration.filter.gender"
   [(ngModel)]="filtration.selectedFilter.gender" [settings]="dropdownSettings"
-  (onSelect)="onFilterSelect($event, 'gender')" (onSelectAll)="onFilterSelectAll($event, 'gender')">
+  (onSelect)="onFilterChange($event)" (onDeSelect)="onFilterChange($event)" 
+  >
 </ng-multiselect-dropdown>
 
 <br>
 
 <ng-multiselect-dropdown [placeholder]="'music'" [data]="filtration.filter.music"
   [(ngModel)]="filtration.selectedFilter.music" [settings]="dropdownSettings"
-  (onSelect)="onFilterSelect($event, 'music')" (onSelectAll)="onFilterSelectAll($event, 'music')">
+  (onSelect)="onFilterChange($event)" (onDeSelect)="onFilterChange($event)" 
+  >
 </ng-multiselect-dropdown>
 
 <br>
 
 <ng-multiselect-dropdown [placeholder]="'film'" [data]="filtration.filter.film"
-  [(ngModel)]="filtration.selectedFilter.film" [settings]="dropdownSettings" (onSelect)="onFilterSelect($event, 'film')"
-  (onSelectAll)="onFilterSelectAll($event, 'film')">
+  [(ngModel)]="filtration.selectedFilter.film" [settings]="dropdownSettings" 
+  (onSelect)="onFilterChange($event)" (onDeSelect)="onFilterChange($event)" 
+  >
 </ng-multiselect-dropdown>
+
+<br>
+
+<div>
+  Filtration type : {{ filtrationtype }}
+  <br>
+  <button (click)="onChangeFiltrationType()"> Change Filtration Type </button>
+</div>
 
 <br>
 
