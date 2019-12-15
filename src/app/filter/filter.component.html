@@ -1,0 +1,14 @@
+<p>
+  filter works!
+</p>
+
+
+<ng-multiselect-dropdown
+  [placeholder]="'gender'"
+  [data]="filtration.filter.gender"
+  [(ngModel)]="filtration.selectedFilter.gender"
+  [settings]="dropdownSettings"
+  (onSelect)="onFilterSelect($event, 'gender')"
+  (onSelectAll)="onFilterSelectAll($event, 'gender')" 
+  >
+</ng-multiselect-dropdown>
