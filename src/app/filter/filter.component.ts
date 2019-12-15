@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { Filter, Filtration } from "../service/filtration.service";
+import { Filtration } from "../service/filtration.service";
 import { IDropdownSettings } from "ng-multiselect-dropdown";
 import { User } from "../model/user.model";
+import { Filter } from "../model/filter.model";
 
 @Component({
   selector: "app-filter",
