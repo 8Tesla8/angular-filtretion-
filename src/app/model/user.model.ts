@@ -1,6 +1,7 @@
 export class User {
+    public id: string;
     public name: string;
     public gender : string;
-    public music: string[];
-    public film: string[];
+    public music: any[];
+    public film: any[];
 }

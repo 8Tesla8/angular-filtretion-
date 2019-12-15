@@ -10,12 +10,14 @@ import { User } from "../model/user.model";
 })
 export class FilterComponent implements OnInit {
   public dropdownSettings = {};
-  public users = [];
+  public allUsers = [];
+  public filtredUsers = [];
 
   constructor(public filtration: Filtration) {}
 
   ngOnInit() {
-    this.users = this.generateUsers();
+    this.allUsers = this.generateUsers();
+    this.filtredUsers = this.allUsers;
 
     this.filtration.filter = this.generateFilters();
 
@@ -30,34 +32,69 @@ export class FilterComponent implements OnInit {
     } as IDropdownSettings;
   }
 
-  public onFilterSelect(event: any, property: string) {}
-  public onFilterSelectAll(event: any, property: string) {}
+  public onFilterSelect(event: any, property: string) {
+    this.filtredUsers = this.filtration.doFiltrationOr(this.allUsers);
+  }
+  public onFilterSelectAll(event: any, property: string) {
+    this.filtredUsers = this.filtration.doFiltrationOr(this.allUsers);
+  }
 
   private generateUsers(): User[] {
     return [
       {
+        id: "1",
         name: "mike",
         gender: "male",
-        music: ["rock", "blues"],
-        film: ["horror", "action"]
+        music: [
+          { id: "rock" },
+          { id: "blues" }
+        ],
+        film: [
+          { id: "horror" },
+          { id: "action" }
+        ]
       },
       {
+        id: "2",
         name: "lera",
         gender: "female",
-        music: ["pop", "blues", "jazz"],
-        film: ["adventure", "action", "comedy"]
+        music: [
+          { id: "rock" },
+          { id: "jazz" },
+          { id: "blues" }
+        ],
+        film: [
+          { id: "adventure" },
+          { id: "action" },
+          { id: "comedy" }
+        ]
       },
       {
+        id: "3",
         name: "john",
         gender: "male",
-        music: ["techno", "blues"],
-        film: ["comedy", "horror"]
+        music: [
+          { id: "techno" },
+          { id: "blues" }
+        ],
+        film: [
+          { id: "comedy" },
+          { id: "horror" }
+        ]
       },
       {
+        id: "4",
         name: "dasha",
         gender: "female",
-        music: ["techno", "pop", "rock"],
-        film: ["action", "horror"]
+        music: [
+          { id: "techno" },
+          { id: "pop" },
+          { id: "rock" }
+        ],
+        film: [
+          { id: "action" },
+          { id: "horror" }
+        ]
       }
     ];
   }
