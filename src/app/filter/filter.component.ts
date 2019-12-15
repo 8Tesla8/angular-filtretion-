@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Filter, Filtration } from "../service/filtration.service";
 import { IDropdownSettings } from "ng-multiselect-dropdown";
+import { User } from "../model/user.model";
 
 @Component({
   selector: "app-filter",
@@ -9,9 +10,13 @@ import { IDropdownSettings } from "ng-multiselect-dropdown";
 })
 export class FilterComponent implements OnInit {
   public dropdownSettings = {};
+  public users = [];
+
   constructor(public filtration: Filtration) {}
 
   ngOnInit() {
+    this.users = this.generateUsers();
+
     this.filtration.filter = this.generateFilters();
 
     this.dropdownSettings = {
@@ -25,27 +30,50 @@ export class FilterComponent implements OnInit {
     } as IDropdownSettings;
   }
 
-  public onFilterSelect(event: any, property: string){
+  public onFilterSelect(event: any, property: string) {}
+  public onFilterSelectAll(event: any, property: string) {}
 
+  private generateUsers(): User[] {
+    return [
+      {
+        name: "mike",
+        gender: "male",
+        music: ["rock", "blues"],
+        film: ["horror", "action"]
+      },
+      {
+        name: "lera",
+        gender: "female",
+        music: ["pop", "blues", "jazz"],
+        film: ["adventure", "action", "comedy"]
+      },
+      {
+        name: "john",
+        gender: "male",
+        music: ["techno", "blues"],
+        film: ["comedy", "horror"]
+      },
+      {
+        name: "dasha",
+        gender: "female",
+        music: ["techno", "pop", "rock"],
+        film: ["action", "horror"]
+      }
+    ];
   }
-  public onFilterSelectAll(event: any, property: string){
-    
-  }
-
-  private generateUsers() {}
 
   private generateFilters(): Filter {
     let filter = new Filter();
     filter.gender = [
       { id: "male", text: "male" },
-      { id: "female", text: "female" },
+      { id: "female", text: "female" }
     ];
 
     filter.film = [
       { id: "action", text: "action" },
       { id: "adventure", text: "adventure" },
       { id: "comedy", text: "comedy" },
-      { id: "actihorroron", text: "horror" },
+      { id: "horror", text: "horror" }
     ];
 
     filter.music = [
@@ -53,7 +81,7 @@ export class FilterComponent implements OnInit {
       { id: "jazz", text: "jazz" },
       { id: "blues", text: "blues" },
       { id: "pop", text: "pop" },
-      { id: "techno", text: "techno" },
+      { id: "techno", text: "techno" }
     ];
 
     return filter;
