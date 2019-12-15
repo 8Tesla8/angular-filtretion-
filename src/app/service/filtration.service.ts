@@ -1,9 +1,9 @@
 import { filter, intersectionBy, some, unionBy } from "lodash-es";
 
 export class Filter {
-  public gender = []; //property - coverageType
-  public music = []; //array
-  public film = []; //array
+  public gender = []; //property 
+  public music = [];  //array
+  public film = [];   //array
 }
 
 export class Filtration {
